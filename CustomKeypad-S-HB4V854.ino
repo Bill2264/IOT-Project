@@ -15,7 +15,6 @@ const char* password = "spot2264";
 WebServer server(80);
 
 
-z
 const byte ROWS = 4;
 const byte COLS = 3;
 
@@ -69,9 +68,10 @@ void setup(){
 void loop(){
   server.handleClient();
   keypad();
-
+ 
+  temp();
  
  dist();
-  delay(200);
+  delay(1000);
   
 }

@@ -6,3 +6,12 @@ void temp()
   Serial.print("  humi:"); 
   Serial.println(DHT.humidity);
 }
+
+float getTemp() {
+   DHT.read(DHT11_PIN);
+   return DHT.temperature;
+}
+int getHumid() {
+   DHT.read(DHT11_PIN);
+   return DHT.humidity;
+}
