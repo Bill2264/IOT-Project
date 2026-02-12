@@ -15,7 +15,6 @@ const char* password = "spot2264";
 WebServer server(80);
 
 
-z
 const byte ROWS = 4;
 const byte COLS = 3;
 
@@ -57,6 +56,8 @@ void setup(){
   }
 
   server.on("/", handleRoot);
+  server.on("/temperature", handleTemperature);
+  server.on("/humidity",handleHumidity);
   server.on("/inline", []() {
     server.send(200, "text/plain", "this works as well");
   });
@@ -65,13 +66,13 @@ void setup(){
   server.begin();
   Serial.println("HTTP server started");
 }
+
   
 void loop(){
   server.handleClient();
   keypad();
-
  
  dist();
-  delay(200);
+  delay(100);
   
 }
