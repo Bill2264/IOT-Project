@@ -1,8 +1,13 @@
 
+void handleTemperature() {
+  server.send(200, "text/plain", getTemp());
+}
+void handleHumidity() {
+  server.send(200, "text/plain", getHumid());
+}
 
 void handleRoot() {
-  String message = homePagePart1 + getTemp() + homePagePart2 + getHumid() + homePagePart3;
-  server.send(200, "text/html", message);
+  server.send(200, "text/html", homePagePart1);
 }
 
 void handleNotFound() {
