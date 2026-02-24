@@ -77,9 +77,12 @@ String homePagePart1 = F(R"=====(<!DOCTYPE html>
 </head>
 	<body>
 		<div class="flex-Container">
-		<h1> Temperature Example Website </h1>
-      
-		<p>Welcome to my website displaying the temperature in ATU</p>
+		<h1> Temperature, humidity and Camera Example Website </h1>
+      <p>Camera example</p>
+      <iframe width="560" height="315" src="http://10.143.62.92:81/stream" frameborder="0" alt="camera video stream"></iframe>
+
+
+		<p>Welcome to my website displaying the temperature and Humidity in ATU</p>
    
 		<table>
         <tr>
