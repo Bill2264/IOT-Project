@@ -15,6 +15,7 @@ const char* password = "spot2264";
 WebServer server(80);
 
 
+
 const byte ROWS = 4;
 const byte COLS = 3;
 
@@ -56,6 +57,7 @@ void setup(){
   }
 
   server.on("/", handleRoot);
+  server.on("/doorStatus", doorStatus);
   server.on("/temperature", handleTemperature);
   server.on("/humidity",handleHumidity);
   server.on("/inline", []() {
@@ -71,8 +73,6 @@ void setup(){
 void loop(){
   server.handleClient();
   keypad();
- 
- dist();
-  delay(100);
-  
+  doorUnlockTimer();
+  delay(200);
 }

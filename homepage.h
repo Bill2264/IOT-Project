@@ -64,15 +64,26 @@ String homePagePart1 = F(R"=====(<!DOCTYPE html>
         })
         .catch(error => console.error('Error fetching humidity:', error)); // Handle errors
     }
+    function doorStatus() {
+      fetch('/doorStatus') // Call the ESP32 server
+      .then(response => response.text()) // Convert response to text
+        .then(doorstatus => {
+          console.log(doorstatus); // Debugging output in console
+          document.getElementById("doorLock").innerText = doorstatus; // Update webpage dynamically
+        })
+        .catch(error => console.error('Error fetching Door Status:', error));
+    }
 
    
     // Fetch temperature/humidity every 1 second
     setInterval(fetchTemperature, 1000);
     setInterval(fetchHumidity, 1000);
+    setInterval(doorStatus,1000);
 
     // Fetch immediately on page load
     window.onload = fetchTemperature;
-    window.onload = ferchHumidity;
+    window.onload = fetchHumidity;
+    window.onload = doorStatus;
   </script>
 </head>
 	<body>
@@ -83,7 +94,7 @@ String homePagePart1 = F(R"=====(<!DOCTYPE html>
 
 
 		<p>Welcome to my website displaying the temperature and Humidity in ATU</p>
-   
+    <span id="doorLock">Loading...</span>
 		<table>
         <tr>
           <th>Sensor</th>

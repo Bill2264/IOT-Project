@@ -10,6 +10,9 @@ void handleRoot() {
   server.send(200, "text/html", homePagePart1);
 }
 
+void doorStatus() {
+  server.send(200, "text/plain", getStatus());
+}
 void handleNotFound() {
   String message = "File Not Found\n\n";
   message += "URI: ";
