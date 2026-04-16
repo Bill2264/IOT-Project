@@ -3,18 +3,22 @@
 #include <WebServer.h>
 #include <ESPmDNS.h>
 #include "homepage.h"
-#include <HCSR04.h>
 #include <DFRobot_DHT11.h>
 DFRobot_DHT11 DHT;
 #include <Keypad.h>
 #define DHT11_PIN 14
 
-const char* ssid = "banger";
-const char* password = "spot2264";
+#define BUZZZER_PIN 21
+hw_timer_t *My_timer = NULL;
+
+const char* ssid = "";
+const char* password = "";
 
 WebServer server(80);
 
-
+void IRAM_ATTR onTimer(){
+  keypad();
+}
 
 const byte ROWS = 4;
 const byte COLS = 3;
@@ -25,8 +29,6 @@ char hexaKeys[ROWS][COLS] = {
   {'7','8','9'},
   {'*','0','#'}
 };
-byte triggerPin = 21;
-byte echoPin = 12;
 
 byte rowPins[ROWS] = {15, 2, 0, 4};
 byte colPins[COLS] = {16, 17, 5};
@@ -36,11 +38,9 @@ Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS
 
 void setup(){
   Serial.begin(115200);
-  HCSR04.begin(triggerPin, echoPin);
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   Serial.println("");
-
   // Wait for connection
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -67,12 +67,15 @@ void setup(){
 
   server.begin();
   Serial.println("HTTP server started");
+  //timer interrupt for keypad
+  My_timer = timerBegin(1000000);
+  timerAttachInterrupt(My_timer, &onTimer);
+  timerAlarm(My_timer,20000,true,0);
 }
 
   
 void loop(){
   server.handleClient();
-  keypad();
   doorUnlockTimer();
   delay(200);
 }
