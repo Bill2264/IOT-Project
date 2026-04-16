@@ -12,30 +12,33 @@ String homePagePart1 = F(R"=====(<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
  
 <!--Include a Title. Used by Search Engines -->
-<title> Temperature Reading WebServer </title>
+<title>Smart home Doorbell</title>
 <style>
    
    <!--choose good contrast between background and foreground colours -->
-   body {       
-	background-color: DodgerBlue;
-	}
+   body {
+      }
 	.flex-Container{
         display: flex;
         flex-direction: column;
-        background-color: DodgerBlue;
+        background-color: beige;
         align-items: center;
+        border-radius: 10px;
       }
+     body {       
+        background-color: #332421;
+      } 
     h1{
     font: bold;
     font-size: 40px;
     font-family: Arial;
-    color: navy;
+    color: black;
 	text-align: center;
   }
   p{
     font-size: 25px;
     font-family: Arial;
-    color: navy;
+    color: black;
 	text-align: center;
    }  
   th, td {
@@ -87,14 +90,22 @@ String homePagePart1 = F(R"=====(<!DOCTYPE html>
   </script>
 </head>
 	<body>
+  <p></p>
 		<div class="flex-Container">
-		<h1> Temperature, humidity and Camera Example Website </h1>
-      <p>Camera example</p>
-      <iframe width="560" height="315" src="http://10.143.62.92:81/stream" frameborder="0" alt="camera video stream"></iframe>
-
-
-		<p>Welcome to my website displaying the temperature and Humidity in ATU</p>
+		<h1>Smart Home Doorbell</h1>
+    </div>
+  <p></p>
+    <div class="flex-Container">
+      <p>Live Camera:</p>
+      <iframe width="321" height="241" src="http://10.147.123.92:81/stream" frameborder="0" alt="camera video stream"></iframe>
+    </div>
+  <p></p>
+    <div class="flex-Container">
+		<p>Door Status:</p>
     <span id="doorLock">Loading...</span>
+    </div>
+  <p></p>
+    <div class="flex-Container">
 		<table>
         <tr>
           <th>Sensor</th>
@@ -110,5 +121,6 @@ String homePagePart1 = F(R"=====(<!DOCTYPE html>
         </tr>
       </table>
      </div>
+  <p></p>
   </body>
 </html>)=====");
